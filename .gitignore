@@ -1,0 +1,8 @@
+# .gitignore
+
+.DS_Store
+*.log
+*.aux
+*.gz
+.idea
+

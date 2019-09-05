@@ -1,0 +1,44 @@
+\documentclass[]{report}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ width=17cm,
+ }
+\usepackage{ragged2e}
+
+\begin{document}
+\begin{center}
+ {\Large Data Intensive Computing - Review Questions 1}
+\end{center}
+\vspace{1cm}
+\justify
+\begin{enumerate}
+ \item Explain how a file region can be left in an inconsistent state in GFS?\\\\
+ Answer1
+ 
+ \item Briefly explain how HopsFS uses User Defined Partitioning (UDP) and Distributed Aware Transaction (DAT) to improve the system performance (e.g., CPU usage, network traffic and latency)?\\\\
+ Answer2
+ 
+ \item Show with an example that in the CAP theorem, we can have only two properties out of Consistency, Availability, and Partition Tolerance at the same time.\\\\
+ Answer3
+ 
+ \item How does BigTable provide strong consistency?\\\\
+ Answer4
+ 
+ \item Write a simple query in Cypher for each of the following requests:
+ \begin{itemize}
+    	\item Match a Person called "John Doe"\\\\
+	Answer5
+        \item Find FRIENDS\_OF John Doe"\\\\
+        Answer6
+        \item Count "John Doe" 's direct acquaintances\\\\
+        Answer7
+  \end{itemize}
+
+\end{enumerate}
+
+
+\end{document}

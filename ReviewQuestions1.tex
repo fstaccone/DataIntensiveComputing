@@ -17,22 +17,20 @@
 \justify
 \begin{enumerate}
  \item Explain how a file region can be left in an inconsistent state in GFS?\\\\
-In GFS, failed mutations (writes or record appends) lead to chunks that are undefined and inconsistent. Due to this inconsistent state of the file region, different clients may see different data at different times.
+In GFS, failed mutations (writes or record appends) at any of the replicas lead to chunks that are undefined and inconsistent. The main sources of inconsistency are concurrency, machine failures or network partitions. Due to this inconsistent state of the file region, different clients may see different data at different times.
 
  
  \item Briefly explain how HopsFS uses User Defined Partitioning (UDP) and Distributed Aware Transaction (DAT) to improve the system performance (e.g., CPU usage, network traffic and latency)?\\\\
-With the aim of improving the performance of the file system operations, HopFS uses User Defined Partitioning to distribute data across different database nodes: the namespace is partitioned
-such that the metadata for all immediate descendants of a directory reside on the same database shard for efficient directory listing. This allows Partition Pruned Index Scans, meaning that scan operations are localized to a single database shard.
+With the aim of improving the performance of the file system operations, HopFS uses User Defined Partitioning to distribute data across different database nodes: the namespace is partitioned such that the metadata for all immediate descendants of a directory reside on the same database shard for efficient directory listing. This allows Partition Pruned Index Scans, meaning that scan operations are localized to a single database shard.
 Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction Coordinator handles which file systems operations: the transaction is started on the database shard that stores all/most of the metadata required for the current file system operation.
 
  
  \item Show with an example that in the CAP theorem, we can have only two properties out of Consistency, Availability, and Partition Tolerance at the same time.\\\\
- Let's make an \textit{Reductio ad absurdum}: let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition). However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. That means that the aforementioned system is not consistent.
+Let's make a \textit{Reductio ad absurdum}: let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition). However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. That means that the aforementioned system is not consistent.
  
  
  \item How does BigTable provide strong consistency?\\\\
- 
- Bigtable provides strong consistency for mainly two reasons.
+ BigTable provides strong consistency for mainly two reasons:
 \begin{enumerate}
     \item Chubby service consists of five active replicas, but only one is elected as Master and manages the changes. 
     To manage the failures, BigTable uses Paxos algorithm. \textbf{TODO rivedi}
@@ -43,11 +41,12 @@ Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction C
  \item Write a simple query in Cypher for each of the following requests:
  \begin{itemize}
     	\item Match a Person called "John Doe"\\\\
-	Answer5
-        \item Find FRIENDS\_OF John Doe"\\\\
-        Answer6
+	MATCH (n:Person \{name: 'John Doe'\})\\        RETURN n;\\
+        \item Find FRIENDS\_OF "John Doe"\\\\
+        MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*]-$>$(p:Person)\\        RETURN p.name;\\
         \item Count "John Doe" 's direct acquaintances\\\\
-        Answer7
+     	MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*1]-$>$(p:Person)\\
+	WITH count (p) AS directAcquaintancesCount\\        RETURN directAcquaintancesCount;\\
   \end{itemize}
 
 \end{enumerate}

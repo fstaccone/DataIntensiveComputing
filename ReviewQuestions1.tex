@@ -17,12 +17,13 @@
 \justify
 \begin{enumerate}
  \item Explain how a file region can be left in an inconsistent state in GFS?\\\\
-In GFS, failed mutations (writes or record appends) at any of the replicas lead to chunks that are undefined and inconsistent. The main sources of inconsistency are concurrency, machine failures or network partitions. Due to this inconsistent state of the file region, different clients may see different data at different times.
-
+In GFS, failed mutations (writes or record appends) lead to chunks that are undefined and inconsistent. As a result of this inconsistent state of the file region, different clients may see different data at different times. \\
+For what concerns the writing mutation, the inconsistency might happen after the primary replica performs the request and forwards it to all secondary replicas. In case of errors in any of the replicas mutations, the modified region is left in an inconsistent state and the client request is considered to have failed. \\
+For what concerns the record append mutation, it follows a similar control flow of the write mutation. If a record append fails at any replica, the client retries the operation. As a consequence, replicas of the same chunk may contain different data possibly including duplicates of the same record in whole or in part, leaving the region in an inconsistent state.
  
  \item Briefly explain how HopsFS uses User Defined Partitioning (UDP) and Distributed Aware Transaction (DAT) to improve the system performance (e.g., CPU usage, network traffic and latency)?\\\\
-With the aim of improving the performance of the file system operations, HopFS uses User Defined Partitioning to distribute data across different database nodes: the namespace is partitioned such that the metadata for all immediate descendants of a directory reside on the same database shard for efficient directory listing. This allows Partition Pruned Index Scans, meaning that scan operations are localized to a single database shard.
-Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction Coordinator handles which file systems operations: the transaction is started on the database shard that stores all/most of the metadata required for the current file system operation.
+With the aim of improving the performance of the file system operations, HopFS uses User Defined Partitioning to distribute data across different database nodes: the namespace is partitioned such that the metadata for all immediate descendants of a directory reside on the same database shard for efficient directory listing. This allows Partition Pruned Index Scans, meaning that scan operations are localized to a single database shard, reducing network load, latency and CPU usage.\\
+Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction Coordinator handles which file systems operations: the transaction is started on the database shard that stores all/most of the metadata required for the current file system operation, reducing network load and latency even more.
 
  
  \item Show with an example that in the CAP theorem, we can have only two properties out of Consistency, Availability, and Partition Tolerance at the same time.\\\\
@@ -43,7 +44,7 @@ Let's make a \textit{Reductio ad absurdum}: let's assume that we have a system t
     	\item Match a Person called "John Doe"\\\\
 	MATCH (n:Person \{name: 'John Doe'\})\\        RETURN n;\\
         \item Find FRIENDS\_OF "John Doe"\\\\
-        MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*]-$>$(p:Person)\\        RETURN p.name;\\
+        MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*]-$>$(p:Person)\\        RETURN p;\\
         \item Count "John Doe" 's direct acquaintances\\\\
      	MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*1]-$>$(p:Person)\\
 	WITH count (p) AS directAcquaintancesCount\\        RETURN directAcquaintancesCount;\\

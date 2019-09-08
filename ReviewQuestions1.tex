@@ -29,10 +29,13 @@ Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction C
 
  
  \item Show with an example that in the CAP theorem, we can have only two properties out of Consistency, Availability, and Partition Tolerance at the same time.\\\\
-We prove the CAP theorem with a \textit{Reductio ad absurdum}.\\Let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition).However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. But that means that the aforementioned system is not consistent. 
+We prove the CAP theorem with a \textit{Reductio ad absurdum}.\\
+Let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition).
+However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. That means that the aforementioned system is not consistent. 
  
  \item How does BigTable provide strong consistency?\\\\
-BigTable provides strong consistency assigning a tablet to only one tablet server. A tablet server manages thousands of tablets.\\During the period of update or replication process, data is locked to ensure that no other processes are updating the same data. In case of failures, a tablet can be assigned to no server and the services become unavailable to the client until a new tablet server assignment is performed.\\ Moreover, the consistency is assured by the replication that is managed by the underlying distributed file system GFS. 
+BigTable provides a strong consistency model since operations on rows are atomic and tablets are only served by one tablet server at a time: each tablet is assigned to only one tablet server, while a  tablet server manages thousands of tablets.\\
+During the period of update or replication process, data are locked to ensure that no other processes are updating the same data. In case of failures, a tablet can be assigned to no server and the services become unavailable to the client until a new tablet server assignment is performed.\\ Moreover, the consistency is assured by the replication that is managed by the underlying distributed file system GFS. 
  \item Write a simple query in Cypher for each of the following requests:
  \begin{itemize}
     	\item Match a Person called "John Doe"\\\\

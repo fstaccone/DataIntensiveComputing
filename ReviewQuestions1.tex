@@ -11,9 +11,11 @@
 
 \begin{document}
 \begin{center}
- {\Large Data Intensive Computing - Review Questions 1}
+ {\Large Data Intensive Computing - Review Questions 1}\\
+ \vspace{0.5cm}
+ {\small Daniele Montesi, Francesco Staccone}
 \end{center}
-\vspace{1cm}
+\vspace{0.5cm}
 \justify
 \begin{enumerate}
  \item Explain how a file region can be left in an inconsistent state in GFS?\\\\
@@ -27,27 +29,22 @@ Moreover, HopFS uses Distributed Aware Transaction to choose which Transaction C
 
  
  \item Show with an example that in the CAP theorem, we can have only two properties out of Consistency, Availability, and Partition Tolerance at the same time.\\\\
-Let's make a \textit{Reductio ad absurdum}: let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition). However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. That means that the aforementioned system is not consistent.
- 
+We prove the CAP theorem with a \textit{Reductio ad absurdum}.\\Let's assume that we have a system that assures property of Consistency, Availability and Network Partition. This means that if I read from any node, I should be able to receive the most recent value (Consistency) with no waiting time (Availability) and errors (Network partition).However, assume that I'm performing a Write to a node X1 and a subsequent read to a node X2 for the same resource. Since the network is partitioned, I won't receive immediately the most recent value at node X2, being the network partitioned. But that means that the aforementioned system is not consistent. 
  
  \item How does BigTable provide strong consistency?\\\\
- BigTable provides strong consistency for mainly two reasons:
-\begin{enumerate}
-    \item Chubby service consists of five active replicas, but only one is elected as Master and manages the changes. 
-    To manage the failures, BigTable uses Paxos algorithm. \textbf{TODO rivedi}
-    Only one tablet server is responsible for a given piece of data. 
-    \item The underlying distributed file system, GFS, is in charge of the replicas, assuring the consistency.
-\end{enumerate}
- 
+BigTable provides strong consistency assigning a tablet to only one tablet server. A tablet server manages thousands of tablets.\\During the period of update or replication process, data is locked to ensure that no other processes are updating the same data. In case of failures, a tablet can be assigned to no server and the services become unavailable to the client until a new tablet server assignment is performed.\\ Moreover, the consistency is assured by the replication that is managed by the underlying distributed file system GFS. 
  \item Write a simple query in Cypher for each of the following requests:
  \begin{itemize}
     	\item Match a Person called "John Doe"\\\\
-	MATCH (n:Person \{name: 'John Doe'\})\\        RETURN n;\\
+	MATCH (n:Person \{name: 'John Doe'\})\\
+        RETURN n;\\
         \item Find FRIENDS\_OF "John Doe"\\\\
-        MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*]-$>$(p:Person)\\        RETURN p;\\
+        MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*]-$>$(p:Person)\\
+        RETURN p;\\
         \item Count "John Doe" 's direct acquaintances\\\\
      	MATCH (:Person \{name:'John Doe'\})-[:FRIEND\_OF*1]-$>$(p:Person)\\
-	WITH count (p) AS directAcquaintancesCount\\        RETURN directAcquaintancesCount;\\
+	WITH count (p) AS directAcquaintancesCount\\
+        RETURN directAcquaintancesCount;\\
   \end{itemize}
 
 \end{enumerate}

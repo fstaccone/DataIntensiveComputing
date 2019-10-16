@@ -1,0 +1,66 @@
+\documentclass[]{report}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{textcomp}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ width=17cm,
+ }
+\usepackage{ragged2e}
+
+\begin{document}
+\begin{center}
+ {\Large Data Intensive Computing - Review Questions 6}
+\end{center}
+\begin{center}
+ {\small Daniele Montesi, Francesco Staccone}
+\end{center}
+\vspace{1cm}
+\justify
+\begin{enumerate}
+ \item According to the greedy vertex-cut algorithm in PowerGraph, an edge (u, v) should be assigned to one of the machines from the vertex (either u or v) with the most unassigned edges, when A(u) intersection A(v) = empty. A(v) is the set of machines that vertex v spans. Explain why? \\
+ 
+ The goal of partitioning in PowerGraph (i.e. using Vertex-cut partitioning) is to distribute the load over multiple machines in order to provide:
+ \begin{itemize}
+     \item Balanced number of edges per machine
+    \item Avoid replication of vertices
+ \end{itemize}
+ Greedy-algorithm works well in this case since it distributes the vertex load evenly whenever is possible.\\
+ In the aforementioned scenario, the reason why the edge (u,v) is assigned to the machine whose vertex has the least edges means that we are balancing the partition loads. Differently, we would increase the chance of possible connection between that assigned vertex and another node, which is probably turning out into unbalanced partitions. 
+ 
+ 
+ \item Assume we have two types of resources in the system, i.e., CPU and Memory. In total we have 28 CPU and 56GB RAM (e.g., 1 CPU = 2 GB). There are two users in the systems. User 1 needs ⟨1CPU,2GB⟩ per task, and user 2 needs ⟨1CPU,4GB⟩ per task. How do you share the resources fairly among these two users, considering the asset fairness and DRF.\\
+\begin{itemize}
+    \item Asset Fairness case: 
+\begin{verbatim}
+max(x,y)
+x+y<=28
+2x+4y<=56
+4x=6y
+\end{verbatim}
+\textbf{Results:}\\
+\textit{User 1:} \textbf{x=12, $<$12 CPU, 24 GB$>$ ; $<$43\% CPU, 43\% GB$>$}\\
+\textit{User 2:} \textbf{ y=8, $<$8 CPU, 32 GB$>$ ; $<$28\% CPU, 57\% GB$>$}\\
+ \item DRF case: \\\\
+ User 1 dominant resource: Equal share for CPU and RAM (1/28 = 2/56)\\
+ User 2 dominant resource: RAM (1/28 $<$ 4/56 )
+\begin{verbatim}
+max(x,y)
+x+y<=28
+2x+4y<=56
+1/28x=4/56y
+\end{verbatim}
+\textbf{Results:}\\
+\textit{User 1:} \textbf{x=14, $<$14 CPU, 28 GB$>$ ; $<$50\% CPU, 50\% GB$>$}\\
+\textit{User 2:} \textbf{y=7, $<$7 CPU, 28 GB$>$ ; $<$25\% CPU, 50\% GB$>$}
+\end{itemize}
+
+
+\end{enumerate}
+
+
+\end{document}

@@ -49,11 +49,27 @@ object Consumer {
     //TODO: Create json starting from String messages
     val jsonStrings = strings.map{ text =>
         val array: Option[IndexedSeq[String]] = Array.unapplySeq(text.split(","))
-        val json: String = "{\"id\": " + array.get(0) + ", \"date\": " + array.get(1) + ", \"time\": " + array.get(2) + ", \"location\": {\"lat\": " + array.get(3) + ", \"lon\": " + array.get(4) + "}, \"day_of_week\": " + array.get(5) + ", \"type\":\""+ array.get(6) + "\"}"
+        var min = 0
+        var hour = 0
+        if (array.get(2).takeRight(2) == "00"){
+            var min = 0
+        }
+        else{
+            var min = array.get(2).takeRight(2)
+        }
+
+        if (array.get(2)(0) == "0"){
+            var hour = 0
+        }
+        else{
+            var hour = array.get(2).take(2)
+        }
+
+        val json: String = "{\"id\": " + array.get(0) + ", \"date\": \"" + array.get(1) + "\", \"hour\": " + hour + ", \"min\": " + min + ", \"location\": {\"lat\": " + array.get(3) + ", \"lon\": " + array.get(4) + "}, \"day_of_week\": " + array.get(5) + ", \"type\":\""+ array.get(6) + "\"}"
         json
     }
 
-    jsonStrings.foreachRDD { rdd => rdd.saveJsonToEs("adessova/_doc") }
+    jsonStrings.foreachRDD { rdd => rdd.saveJsonToEs("adessova1/_doc") }
 
     ssc.start()
     ssc.awaitTermination()

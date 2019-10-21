@@ -1,4 +1,3 @@
-
 import java.util.HashMap
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -19,6 +18,9 @@ import com.datastax.driver.core.{Session, Cluster, Host, Metadata}
 import com.datastax.spark.connector.streaming._
 import scala.util.parsing.json._
 import scala.collection.mutable
+
+import org.elasticsearch.spark._
+
 
 object Consumer {
   def main(args: Array[String]) {
@@ -45,30 +47,14 @@ object Consumer {
     strings.print()
 
     //TODO: Create json starting from String messages
-    val jsonString = strings.map{ text =>
+    val jsonStrings = strings.map{ text =>
         val array: Option[IndexedSeq[String]] = Array.unapplySeq(text.split(","))
-        val json: String = "{\"id\":\"" + array.get(0) + "\", \"lat\":\"" + array.get(3) + "\", \"long\":\"" + array.get(4) + "\", \"type\":\""+ array.get(6) + "\"}"
+        val json: String = "{\"id\": " + array.get(0) + ", \"date\": " + array.get(1) + ", \"time\": " + array.get(2) + ", \"location\": {\"lat\": " + array.get(3) + ", \"lon\": " + array.get(4) + "}, \"day_of_week\": " + array.get(5) + ", \"type\":\""+ array.get(6) + "\"}"
         json
     }
-        
-    val storingLines = jsonString//JSON.parseRaw(jsonString).get.toString()
 
-    storingLines.print()
-/*
-    import org.elasticsearch.spark.streaming._ 
+    jsonStrings.foreachRDD { rdd => rdd.saveJsonToEs("adessova/_doc") }
 
-
-    //TODO: Store json in elasticsearch
-    val microbatches = mutable.Queue(storingLines)                
-
-    // Save to Elasticsearch
-    ssc.queueStream(microbatches).saveJsonToEs("dockless/doc") 
-
-*/
-    //TODO: Elasticsearch and Kibana: differnet versions! How to downgrade kibana from 7-4 to 6.8?
-
-    //https://www.youtube.com/watch?v=5IiAZJSsz7I&t=88s how to use the visulization tools in kibana
-    
     ssc.start()
     ssc.awaitTermination()
   }

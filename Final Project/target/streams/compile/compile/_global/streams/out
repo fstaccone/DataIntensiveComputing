@@ -1,4 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/project/Consumer.scala:50:79: ';' expected but '.' found.[0m
-[0m[[0m[31merror[0m] [0m[0m        val json: String = "{\"id\":\"" + array.get(0) + "\", \"lat\":\""array.get(3)"\", \"long\":\"" + array.get(4) + "\", \"type\":\""+ array.get(6) + "\"}"[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/Consumer.scala:33:10: value config is not a member of org.apache.spark.SparkConf[0m
+[0m[[0m[31merror[0m] [0m[0mpossible cause: maybe a semicolon is missing before `value config'?[0m
+[0m[[0m[31merror[0m] [0m[0m        .config(ConfigurationOptions.ES_NET_HTTP_AUTH_USER, "username")[0m
+[0m[[0m[31merror[0m] [0m[0m         ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

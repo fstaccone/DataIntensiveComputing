@@ -1,0 +1,5 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Project/generator/Producer.scala:19:7: value mkString is not a member of Unit[0m
+[0m[[0m[31merror[0m] [0m[0mpossible cause: maybe a semicolon is missing before `value mkString'?[0m
+[0m[[0m[31merror[0m] [0m[0m    }.mkString[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

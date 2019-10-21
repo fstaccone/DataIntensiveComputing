@@ -1,0 +1,31 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:26:21: unclosed string literal[0m
+[0m[[0m[31merror[0m] [0m[0m    session.execute("CREATE KEYSPACE IF NOT EXISTS avg_space WITH REPLICATION = [0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:11: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:17: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:21: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:36: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:39: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:58: illegal character '\u2019'[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:66: unclosed string literal[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:27:65: ')' expected but ';' found.[0m
+[0m[[0m[31merror[0m] [0m[0m        { ’class’ : ’SimpleStrategy’, ’replication_factor’ : 1 };")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Lab2 Assignment/src/sparkstreaming/KafkaSpark.scala:41:5: ';' expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m    )[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m10 errors found[0m

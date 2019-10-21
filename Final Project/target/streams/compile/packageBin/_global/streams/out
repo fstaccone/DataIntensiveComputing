@@ -1,15 +1,17 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/danmontesi/Desktop/project/target/scala-2.11/consumer_2.11-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/consumer_2.11-1.0.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Consumer$$anonfun$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes/Consumer$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/Consumer$$anonfun$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Consumer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes/Consumer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/Consumer.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Consumer$$anonfun$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes/Consumer$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/Consumer$$anonfun$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ReadDataFile.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes/ReadDataFile.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/ReadDataFile.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Consumer$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/project/target/scala-2.11/classes/Consumer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/Consumer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Consumer$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/target/scala-2.11/classes/Consumer$$anonfun$main$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

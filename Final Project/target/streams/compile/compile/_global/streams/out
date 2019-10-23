@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/danmontesi/Desktop/DataIntensiveComputing/Final Project/Consumer.scala:49:20: not found: value string[0m
-[0m[[0m[31merror[0m] [0m[0m    val filtered = string.filter(x => x contains ",")[0m
-[0m[[0m[31merror[0m] [0m[0m                   ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

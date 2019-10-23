@@ -33,38 +33,15 @@ object Consumer {
         "group.id" -> "kafka-spark-streaming",
         "zookeeper.connection.timeout.ms" -> "1000")
 
-    val topicSet=Set("dockless")
+    val topicSet=Set("docklessvehicles")
 
     val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](ssc, kafkaConf, topicSet)
     
     val strings = messages.map(_._2)
-
-    /*
-    val filtered = strings.filter(x => x contains ",")
-    val jsonStrings = filtered.map{ text =>
-        val array: Option[IndexedSeq[String]] = Array.unapplySeq(text.split(","))
-        var min = 0
-        var hour = 0
-        if (array.get(2).takeRight(2) == "00"){
-            var min = 0
-        }
-        else{
-            var min = array.get(2).takeRight(2)
-        }
-        if (array.get(2)(0) == "0"){
-            var hour = 0
-        }
-        else{
-            var hour = array.get(2).take(2)
-        }
-        val json: String = "{\"id\": " + array.get(0) + ", \"date\": \"" + array.get(1) + "\", \"hour\": " + hour + ", \"min\": " + min + ", \"location\": {\"lat\": " + array.get(3) + ", \"lon\": " + array.get(4) + "}, \"day_of_week\": " + array.get(5) + ", \"type\":\""+ array.get(6) + "\"}"
-        json
-    }
-    */
       
-    val jsonStrings = strings.filter(x => x contains ",").map{ text =>
+    val jsonStrings = strings.filter(x => x.split(",").length==9).map{ text =>
         val array: Option[IndexedSeq[String]] = Array.unapplySeq(text.split(","))
-        val json: String = "{\"id\": " + array.get(0) + ", \"date\": \"" + array.get(1) + "T"+ array.get(2) + "\", \"location\": {\"lat\": " + array.get(3) + ", \"lon\": " + array.get(4) + "}, \"type\":\""+ array.get(6) + "\"}"
+        val json: String = "{\"id\": " + array.get(0) + ", \"date\": \"" + array.get(1) + "T"+ array.get(2) + "\", \"duration\": " + array.get(3) + ", \"location\": {\"lat\": " + array.get(4) + ", \"lon\": " + array.get(5) + "}, \"day\": " + array.get(6) + ", \"hour\": " + array.get(7) + ", \"type\":\""+ array.get(8) + "\"}"
         json
     }
 

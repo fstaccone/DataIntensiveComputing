@@ -28,7 +28,7 @@ object Consumer {
     // make a connection to Kafka and read (key, value) pairs from it
     val conf = new SparkConf().setAppName("csv").setMaster("local[2]")
     val sc = SparkContext.getOrCreate(conf)
-    val ssc = new StreamingContext(sc, Seconds(10))
+    val ssc = new StreamingContext(sc, Seconds(2))
 
     ssc.checkpoint("./checkpoint")
 
@@ -46,8 +46,11 @@ object Consumer {
 
     strings.print()
 
+    val filtered = strings.filter(x => x contains ",")
+
     //TODO: Create json starting from String messages
-    val jsonStrings = strings.map{ text =>
+
+    val jsonStrings = filtered.map{ text =>
         val array: Option[IndexedSeq[String]] = Array.unapplySeq(text.split(","))
         var min = 0
         var hour = 0
@@ -69,7 +72,9 @@ object Consumer {
         json
     }
 
-    jsonStrings.foreachRDD { rdd => rdd.saveJsonToEs("adessova1/_doc") }
+    jsonStrings.window(Seconds(10), Seconds(10)).foreachRDD { rdd => rdd.saveJsonToEs("adessova1/_doc") }
+
+
 
     ssc.start()
     ssc.awaitTermination()

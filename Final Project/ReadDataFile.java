@@ -8,7 +8,7 @@ import java.io.File;
 
 public class ReadDataFile {
 
-    private static int batchSize=10;
+    private static int batchSize=1;
     private static int fileLength=300561;
     private static File file;
     public static void main(String args[]) throws IOException {
@@ -17,7 +17,7 @@ public class ReadDataFile {
         for (int j= 0; j < fileLength/batchSize; j++) {
             readBatch(br,batchSize, file);  
             try{
-            Thread.sleep(10000);
+            Thread.sleep(1000);
             }catch(Exception e){
             e.printStackTrace();
             }
